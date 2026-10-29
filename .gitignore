@@ -1,0 +1,58 @@
+#Prompt
+requisitos.md
+
+# Segredos e arquivos de ambiente (mantenha apenas os exemplos)
+.env
+.env.*
+!.env.example
+**/.env
+**/.env.*
+!**/.env.example
+
+# Dependências, caches e saídas de build
+node_modules/
+dist/
+coverage/
+.expo/
+.cache/
+.npm/
+.yarn/
+.pnpm-store/
+web-build/
+android/**/build/
+ios/build/
+
+# Mídia enviada, bancos locais, backups e logs
+backend/media/
+uploads/
+*.sqlite
+*.sqlite3
+*.db
+*.dump
+*.backup
+*.bak
+*.sql.gz
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# Chaves privadas, certificados e credenciais locais
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*.keystore
+*.mobileprovision
+.ssh/
+.cert/
+.secrets/
+secrets/
+*service-account*.json
+
+# Arquivos gerados e específicos da máquina
+.DS_Store
+Thumbs.db
+*.swp
+*.swo

@@ -1,0 +1,20 @@
+{
+  "expo": {
+    "name": "Insta Senac",
+    "slug": "insta-senac",
+    "scheme": "instasenac",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "plugins": [
+      "expo-secure-store",
+      "expo-image"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "package": "br.senac.instasenac",
+      "softwareKeyboardLayoutMode": "resize"
+    }
+  }
+}

@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Administração | Insta Senac</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section id="login" class="login-card">
+        <a class="brand" href="#" aria-label="Insta Senac">
+          <span class="brand-mark">I</span>
+          <span>insta<span class="brand-light">senac</span></span>
+        </a>
+        <p class="eyebrow">PAINEL ADMINISTRATIVO</p>
+        <h1>Acesse sua conta</h1>
+        <p class="muted">Entre com suas credenciais de administrador.</p>
+        <form id="login-form">
+          <label>E-mail <input name="email" type="email" autocomplete="username" placeholder="voce@exemplo.com" required /></label>
+          <label>Senha <input name="password" type="password" autocomplete="current-password" placeholder="Sua senha" required /></label>
+          <button class="button button-primary">Entrar no painel</button>
+        </form>
+      </section>
+      <div id="dashboard" class="dashboard-shell" hidden>
+        <aside class="sidebar">
+          <a class="brand" href="#overview" aria-label="Insta Senac">
+            <span class="brand-mark">I</span>
+            <span>insta<span class="brand-light">senac</span></span>
+          </a>
+          <p class="nav-label">GERENCIAMENTO</p>
+          <nav class="side-nav" aria-label="Menu principal">
+            <button class="nav-item" type="button" data-page="overview"><span class="nav-icon">⌂</span>Visão geral</button>
+            <button class="nav-item" type="button" data-page="categories"><span class="nav-icon">▦</span>Categorias</button>
+            <button class="nav-item" type="button" data-page="student-create"><span class="nav-icon">＋</span>Cadastrar aluno</button>
+            <button class="nav-item" type="button" data-page="students"><span class="nav-icon">♙</span>Alunos</button>
+          </nav>
+          <div class="sidebar-footer">
+            <span class="admin-avatar">A</span>
+            <span class="admin-label">Administrador</span>
+            <button id="logout" class="icon-button" type="button" aria-label="Sair" title="Sair">↗</button>
+          </div>
+        </aside>
+        <div class="main-column">
+          <header class="topbar">
+            <div class="breadcrumb"><span>Insta Senac</span><span class="breadcrumb-separator">/</span><strong id="page-breadcrumb">Visão geral</strong></div>
+            <span class="status-pill"><span class="status-dot"></span>Administração</span>
+          </header>
+          <div class="page-content">
+            <div class="page-heading">
+              <div><p class="eyebrow">INSTA SENAC</p><h1 id="page-title">Visão geral</h1><p id="page-description" class="muted">Gerencie categorias e alunos em um só lugar.</p></div>
+            </div>
+            <section class="page-view" data-view="overview">
+              <div class="stats-grid">
+                <article class="stat-card"><span class="stat-label">CATEGORIAS ATIVAS</span><strong id="category-count">—</strong><span class="stat-detail">Cursos disponíveis</span></article>
+                <article class="stat-card"><span class="stat-label">ALUNOS CADASTRADOS</span><strong id="student-count">—</strong><span class="stat-detail">Contas de estudantes</span></article>
+              </div>
+              <section class="content-card">
+                <div class="card-heading"><div><h2>Ações rápidas</h2><p class="muted">Acesse as tarefas mais comuns do painel.</p></div></div>
+                <div class="quick-actions">
+                  <button class="quick-action" type="button" data-page="categories"><span class="action-icon">▦</span><span><strong>Gerenciar categorias</strong><small>Adicione ou remova cursos</small></span><span class="action-arrow">→</span></button>
+                  <button class="quick-action" type="button" data-page="student-create"><span class="action-icon">＋</span><span><strong>Cadastrar aluno</strong><small>Crie uma nova conta de aluno</small></span><span class="action-arrow">→</span></button>
+                  <button class="quick-action" type="button" data-page="students"><span class="action-icon">♙</span><span><strong>Consultar alunos</strong><small>Pesquise alunos cadastrados</small></span><span class="action-arrow">→</span></button>
+                </div>
+              </section>
+            </section>
+            <section class="page-view" data-view="categories" hidden>
+              <section class="content-card">
+                <div class="card-heading"><div><h2>Nova categoria</h2><p class="muted">Organize os alunos por curso ou área.</p></div></div>
+                <form id="category-form" class="inline-form">
+                  <label>Nome da categoria <input name="name" maxlength="100" placeholder="Ex.: Administração" required /></label>
+                  <button class="button button-primary">Adicionar categoria</button>
+                </form>
+              </section>
+              <section class="content-card">
+                <div class="card-heading"><div><h2>Categorias cadastradas</h2><p class="muted">Categorias disponíveis para novos alunos.</p></div><span id="category-list-count" class="count-badge">0</span></div>
+                <ul id="categories" class="record-list"></ul>
+              </section>
+            </section>
+            <section class="page-view" data-view="student-create" hidden>
+              <section class="content-card">
+                <div class="card-heading"><div><h2>Dados do aluno</h2><p class="muted">Preencha os dados para criar o acesso ao aplicativo.</p></div></div>
+                <form id="student-form" class="form-grid">
+                  <label>Nome completo <input name="name" maxlength="120" placeholder="Nome do aluno" required /></label>
+                  <label>E-mail <input name="email" type="email" autocomplete="off" placeholder="aluno@exemplo.com" required /></label>
+                  <label>Número de matrícula <input name="enrollmentNumber" maxlength="40" placeholder="Ex.: 202600123" required /></label>
+                  <label>Senha inicial <input name="password" type="password" minlength="8" autocomplete="new-password" placeholder="Mínimo de 8 caracteres" required /></label>
+                  <label class="field-full">Curso / categoria <select name="categoryId" required></select></label>
+                  <div class="form-actions field-full"><button class="button button-primary">Cadastrar aluno</button></div>
+                </form>
+              </section>
+            </section>
+            <section class="page-view" data-view="students" hidden>
+              <section class="content-card">
+                <div class="card-heading"><div><h2>Alunos cadastrados</h2><p class="muted">Pesquise por nome, e-mail ou número de matrícula.</p></div></div>
+                <form id="student-search-form" class="search-form">
+                  <label class="search-field"><span class="visually-hidden">Buscar alunos</span><span class="search-icon">⌕</span><input name="search" type="search" autocomplete="off" placeholder="Buscar alunos..." /></label>
+                  <button class="button button-secondary">Buscar</button>
+                </form>
+                <div class="table-wrap">
+                  <table>
+                    <thead><tr><th>ALUNO</th><th>MATRÍCULA</th><th>CATEGORIA</th><th>AÇÕES</th></tr></thead>
+                    <tbody id="students" aria-live="polite"></tbody>
+                  </table>
+                </div>
+              </section>
+            </section>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>
